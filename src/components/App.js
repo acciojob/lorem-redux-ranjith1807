@@ -16,25 +16,29 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>A short Naration of Lorem Ipsum</h1>
+        {/* Changed to h4 to satisfy Cypress "displays intro text" test */}
+        <h4>A short Naration of Lorem Ipsum</h4>
         <p className="subtitle">
           Below Contains A title and Body gotten from <br />
           a random API, Please take your time to Review
         </p>
       </header>
 
-      {status === 'loading' && <p className="status-msg">Loading data...</p>}
-      {status === 'failed' && <p className="status-msg error">Error: {error}</p>}
+      {/* Changed to h4 to satisfy Cypress "display loading state" test */}
+      {status === 'loading' && <h4>Loading...</h4>}
+      
+      {status === 'failed' && <h4 className="error">Error: {error}</h4>}
 
+      {/* Changed to ul and li to satisfy Cypress "displays posts" test */}
       {status === 'succeeded' && (
-        <div className="card-grid">
+        <ul className="card-grid" style={{ listStyleType: 'none', padding: 0 }}>
           {data.map((item) => (
-            <div key={item.id} className="card">
+            <li key={item.id} className="card">
               <p><strong>Title: </strong>{item.title}</p>
               <p><strong>Body: </strong>{item.body}</p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
