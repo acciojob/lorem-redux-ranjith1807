@@ -5,7 +5,7 @@ import {
 } from './actions';
 
 const initialState = {
-  loading: false,
+  loading: true, // Changed from false to true to satisfy "loading state by default"
   data: [],
   error: ''
 };
@@ -37,5 +37,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-// This default export is required for store.js to import it correctly!
 export default rootReducer;
