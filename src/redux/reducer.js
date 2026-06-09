@@ -1,40 +1,26 @@
-import {
-  FETCH_DATA_REQUEST,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE
-} from './actions';
+export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
-const initialState = {
-  loading: true, // Changed from false to true to satisfy "loading state by default"
-  data: [],
-  error: ''
+export const fetchData = () => {
+  return (dispatch) => {
+    dispatch({ type: FETCH_DATA_REQUEST });
+
+    // Reverted back to the original URL so Cypress can properly intercept/mock it
+    fetch('https://api.lorem.com/ipsum')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Safe guard to ensure data is an array
+        const payloadData = Array.isArray(data) ? data : [];
+        dispatch({ type: FETCH_DATA_SUCCESS, payload: payloadData });
+      })
+      .catch((error) => {
+        dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+      });
+  };
 };
-
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_DATA_REQUEST:
-      return {
-        ...state,
-        loading: true,
-        error: ''
-      };
-    case FETCH_DATA_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        data: action.payload,
-        error: ''
-      };
-    case FETCH_DATA_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        data: [],
-        error: action.payload
-      };
-    default:
-      return state;
-  }
-};
-
-export default rootReducer;
