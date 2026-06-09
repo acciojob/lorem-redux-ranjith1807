@@ -24,20 +24,18 @@ function App() {
         </h4>
       </header>
 
-      {/* Exactly 1 paragraph element for the loading state */}
       {loading && <p className="status-message">Loading...</p>}
       {error && <p className="status-message error">Error: {error}</p>}
 
-      {/* Exactly 1 paragraph element inside each card item */}
       {!loading && !error && data && data.length > 0 && (
         <ul className="grid">
           {data.slice(0, 6).map((item, index) => (
             <li className="card" key={item.id || index}>
-              <p>
-                <strong>Title :</strong> {item.title}
-                <br /><br />
-                <strong>Body :</strong> {item.body}
-              </p>
+              {/* Only 'Title :' is wrapped inside <strong> */}
+              <p className="title"><strong>Title :</strong>{item.title}</p>
+              
+              {/* Only 'Body :' is wrapped inside <strong> */}
+              <p className="body"><strong>Body :</strong>{item.body}</p>
             </li>
           ))}
         </ul>
