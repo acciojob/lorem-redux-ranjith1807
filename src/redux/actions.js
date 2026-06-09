@@ -9,7 +9,7 @@ export const fetchData = () => {
     dispatch({ type: FETCH_DATA_REQUEST });
 
     // Note: If api.lorem.com/ipsum is failing, swap it with 'https://jsonplaceholder.typicode.com/posts'
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('https://api.lorem.com/ipsum')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
