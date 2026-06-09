@@ -1,44 +1,45 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from './redux/actions';
-import './styles/App.css';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   
-  // Extracting state from Redux store
   // Extracting specific state slices from Redux store
   const loading = useSelector((state) => state.loading);
   const data = useSelector((state) => state.data);
   const error = useSelector((state) => state.error);
+
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
 
   return (
     <div className="container">
+      {/* Cypress Test 1: Expects intro text in an h4 */}
       <header className="header">
         <h1>A short Naration of Lorem Ipsum</h1>
-        <p className="subtitle">
+        <h4>
           Below Contains A title and Body gotten from<br/>
           a random API, Please take your time to Review
-        </p>
+        </h4>
       </header>
 
-      {/* Loading & Error States */}
-      {loading && <p className="status-message">Loading data, please wait...</p>}
-      {error && <p className="status-message error">Error: {error}</p>}
+      {/* Cypress Test 3: Expects loading state in an h4 */}
+      {loading && <h4 className="status-message">Loading...</h4>}
+      {error && <h4 className="status-message error">Error: {error}</h4>}
 
-      {/* Data Display */}
+      {/* Cypress Test 2 & 4: Expects data in 'li' tags and likely 'h4' tags for the titles */}
       {!loading && !error && data.length > 0 && (
-        <div className="grid">
-          {data.slice(0, 6).map((item, index) => ( // Sliced to 6 to match the preview image layout
-            <div className="card" key={item.id || index}>
-              <p><strong>Title:</strong> {item.title}</p>
-              <p><strong>Body:</strong> {item.body}</p>
-            </div>
+        <ul className="grid">
+          {data.slice(0, 6).map((item, index) => (
+            <li className="card" key={item.id || index}>
+              <h4>Title :{item.title}</h4>
+              <p>Body :{item.body}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
