@@ -24,17 +24,18 @@ function App() {
         </h4>
       </header>
 
-      {/* Displays loading state */}
-      {loading && <h4 className="status-message">Loading...</h4>}
-      {error && <h4 className="status-message error">Error: {error}</h4>}
+      {loading && <p className="status-message">Loading...</p>}
+      {error && <p className="status-message error">Error: {error}</p>}
 
-      {/* Displays posts with the exact CSS classes Cypress wants */}
       {!loading && !error && data && data.length > 0 && (
         <ul className="grid">
           {data.slice(0, 6).map((item, index) => (
             <li className="card" key={item.id || index}>
-              <h4 className="title">Title :{item.title}</h4>
-              <p className="body">Body :{item.body}</p>
+              {/* Only 'Title :' is wrapped inside <strong> */}
+              <p className="title"><strong>Title :</strong>{item.title}</p>
+              
+              {/* Only 'Body :' is wrapped inside <strong> */}
+              <p className="body"><strong>Body :</strong>{item.body}</p>
             </li>
           ))}
         </ul>

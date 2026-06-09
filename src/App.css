@@ -15,9 +15,10 @@
   margin-bottom: 10px;
 }
 
-.subtitle {
+.header h4 {
   font-weight: bold;
   font-size: 1rem;
+  line-height: 1.4;
 }
 
 .status-message {
@@ -26,18 +27,12 @@
   font-family: sans-serif;
 }
 
-.error {
-  color: red;
-}
-
-
-
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  list-style-type: none; /* Removes the default bullet points */
-  padding: 0;            /* Removes default list indent */
+  list-style-type: none;
+  padding: 0;
   margin: 0;
 }
 
@@ -48,12 +43,21 @@
   font-family: serif;
 }
 
-.card h4 {
+/* Explicitly sets the full sentences to normal weight */
+.card .title {
+  font-weight: normal; 
   margin: 0 0 10px 0;
   font-size: 1rem;
 }
 
-.card p {
+.card .body {
+  font-weight: normal; 
   margin: 0;
   line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+/* Ensures the strong tag retains its bold look */
+.card strong {
+  font-weight: bold;
 }
