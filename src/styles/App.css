@@ -1,56 +1,49 @@
-body {
-  font-family: 'Times New Roman', Times, serif;
-  margin: 0;
-  padding: 0;
-  background-color: #fff;
-  color: #333;
-}
-
 .container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px;
+  font-family: serif;
 }
 
 .header {
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .header h1 {
   font-size: 2rem;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
-  font-size: 1.1rem;
   font-weight: bold;
+  font-size: 1rem;
 }
 
-.status-msg {
+.status-message {
   text-align: center;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-family: sans-serif;
 }
 
 .error {
   color: red;
 }
 
-.card-grid {
+.grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
 .card {
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  font-family: serif;
 }
 
 .card p {
   margin: 10px 0;
-  line-height: 1.5;
+  line-height: 1.4;
 }
