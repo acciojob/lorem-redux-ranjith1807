@@ -7,7 +7,7 @@ export const fetchData = () => {
     dispatch({ type: FETCH_START });
     
     // Using the official test API URL
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("https://api.lorem.com/ipsum")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: FETCH_SUCCESS, payload: data });
