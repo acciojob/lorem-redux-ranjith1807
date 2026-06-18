@@ -1,7 +1,7 @@
 import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './actions';
 
 const initialState = {
-  loading: false,
+  loading: true, // <-- Changed to true so it loads by default!
   data: null,
   error: null
 };
