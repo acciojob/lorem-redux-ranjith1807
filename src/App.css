@@ -21,11 +21,7 @@
   line-height: 1.5;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
+
 
 .card {
   border: 1px solid #ccc;
@@ -37,4 +33,11 @@
   margin: 10px 0;
   font-size: 14px;
   line-height: 1.6;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  list-style-type: none; /* Removes the <li> bullet points */
+  padding: 0;            /* Removes default <ul> padding */
 }
