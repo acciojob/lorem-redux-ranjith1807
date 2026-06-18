@@ -1,63 +1,40 @@
-.container {
+.app-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
   font-family: serif;
 }
 
-.header {
+.header-section {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.header h1 {
-  font-size: 2rem;
+.header-section h1 {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-.header h4 {
+.header-section p {
+  font-size: 14px;
   font-weight: bold;
-  font-size: 1rem;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-.status-message {
-  text-align: center;
-  font-size: 1.2rem;
-  font-family: sans-serif;
-}
-
-.grid {
+.grid-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
 .card {
-  border: 1px solid #ddd;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
   padding: 20px;
-  font-family: serif;
+  text-align: left;
 }
 
-/* Explicitly sets the full sentences to normal weight */
-.card .title {
-  font-weight: normal; 
-  margin: 0 0 10px 0;
-  font-size: 1rem;
-}
-
-.card .body {
-  font-weight: normal; 
-  margin: 0;
-  line-height: 1.4;
-  font-size: 0.95rem;
-}
-
-/* Ensures the strong tag retains its bold look */
-.card strong {
-  font-weight: bold;
+.card p {
+  margin: 10px 0;
+  font-size: 14px;
+  line-height: 1.6;
 }
