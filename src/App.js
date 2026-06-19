@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchData } from './actions';
-import './App.css';
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchData } from "./redux/actions";
+import "./App.css";
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
-  
+
   const loading = useSelector((state) => state.loading);
   const data = useSelector((state) => state.data);
   const error = useSelector((state) => state.error);
@@ -15,35 +15,36 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <div className="App">
-      <h1>A short Naration of Lorem Ipsum</h1>
-      <p>Below Contains A title and Body gotten froma random API, Please take your time to Review</p>
-      
-      {/* Cypress expects to see this while loading */}
-      {loading && <h4 className="loading">Loading...</h4>}
-      
-      {error && <p className="error">Error: {error}</p>}
-      
-      {data && !loading && (
-        <ul className="grid-container">
-          {Array.isArray(data) ? (
-            data.map((item, index) => (
-              <li className="card" key={index}>
-                {/* Notice the exact formatting with no space after the colon */}
-                <h4 className="title">Title :{item.title}</h4>
-                <p className="body">Body :{item.body}</p>
-              </li>
-            ))
-          ) : (
-            <li className="card">
-              <h4 className="title">Title :{data.title}</h4>
-              <p className="body">Body :{data.body}</p>
+    <div className="container">
+      <header className="header">
+        <h1>A short Naration of Lorem Ipsum</h1>
+        <h4>
+          Below Contains A title and Body gotten from
+          <br />a random API, Please take your time to Review
+        </h4>
+      </header>
+
+      {/* Displays loading state */}
+      {loading && <h4 className="status-message">Loading...</h4>}
+      {error && <h4 className="status-message error">Error: {error}</h4>}
+
+      {/* Displays posts with the exact CSS classes Cypress wants */}
+      {!loading && !error && data && data.length > 0 && (
+        <ul className="grid">
+          {data.map((item, index) => (
+            <li className="card" key={item.id || index}>
+              <h4 className="title">
+                <strong>Title</strong> :{item.title}
+              </h4>
+              <p className="body">
+                <strong>Body</strong> :{item.body}
+              </p>
             </li>
-          )}
+          ))}
         </ul>
       )}
     </div>
   );
-};
+}
 
 export default App;
