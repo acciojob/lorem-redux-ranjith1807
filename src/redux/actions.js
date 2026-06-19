@@ -11,7 +11,7 @@ export const fetchData = () => {
       .then((response) => {
         setTimeout(() => {
           dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data });
-        }, 4000);
+        }, 1000);
       })
       .catch((error) => {
         dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
