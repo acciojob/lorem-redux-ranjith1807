@@ -1,40 +1,38 @@
 import {
-  FETCH_DATA_REQUEST,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
 } from './actions';
 
 const initialState = {
-  loading: true, // Changed from false to true to satisfy "loading state by default"
-  data: [],
-  error: ''
+  loading: false,
+  posts: [],
+  error: null,
 };
 
-const rootReducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_DATA_REQUEST:
+    case FETCH_POSTS_REQUEST:
       return {
         ...state,
         loading: true,
-        error: ''
+        error: null,
       };
-    case FETCH_DATA_SUCCESS:
+    case FETCH_POSTS_SUCCESS:
       return {
         ...state,
         loading: false,
-        data: action.payload,
-        error: ''
+        posts: action.payload,
       };
-    case FETCH_DATA_FAILURE:
+    case FETCH_POSTS_FAILURE:
       return {
         ...state,
         loading: false,
-        data: [],
-        error: action.payload
+        error: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default rootReducer;
+export default postReducer;
