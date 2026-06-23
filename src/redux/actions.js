@@ -1,14 +1,25 @@
-// Action Types
-export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
-export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
+export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-// Async Thunk Action
-export const fetchData = () => {
+export const fetchPostsRequest = () => ({
+  type: FETCH_POSTS_REQUEST,
+});
+
+export const fetchPostsSuccess = (posts) => ({
+  type: FETCH_POSTS_SUCCESS,
+  payload: posts,
+});
+
+export const fetchPostsFailure = (error) => ({
+  type: FETCH_POSTS_FAILURE,
+  payload: error,
+});
+
+export const fetchPosts = () => {
   return (dispatch) => {
-    dispatch({ type: FETCH_DATA_REQUEST });
-
-    // Note: If api.lorem.com/ipsum is failing, swap it with 'https://jsonplaceholder.typicode.com/posts'
+    dispatch(fetchPostsRequest());
+    
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then((response) => {
         if (!response.ok) {
@@ -17,10 +28,10 @@ export const fetchData = () => {
         return response.json();
       })
       .then((data) => {
-        dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
+        dispatch(fetchPostsSuccess(data));
       })
       .catch((error) => {
-        dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+        dispatch(fetchPostsFailure(error.message));
       });
   };
 };
