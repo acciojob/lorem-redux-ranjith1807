@@ -17,25 +17,28 @@ const App = () => {
   return (
     <div className="container">
       
-      {/* 1. Intro text must be an h4 to pass Test 1 */}
-      <h4>A short Naration of Lorem Ipsum</h4>
+      {/* Test 1 & 3 explicitly require this to be an <h1> */}
+      <h1>A short Naration of Lorem Ipsum</h1>
+      
+      {/* Subtitle */}
       <p>Below Contains A title and Body gotten from a random API, Please take your time to Review</p>
 
-      {/* 2. Loading state must be an h4 to pass Test 3 */}
-      {loading && <h4>Loading...</h4>}
+      {/* Loading State */}
+      {loading && <p>Loading...</p>}
       
-      {error && <h4>Error: {error}</h4>}
+      {/* Error State */}
+      {error && <p>Error: {error}</p>}
 
-      {/* 3. The list items must be li to pass Test 2 and 4 */}
+      {/* Posts Grid - Content MUST be in <p> tags per functional requirements */}
       {!loading && !error && posts.length > 0 && (
-        <ul className="grid-container" style={{ listStyleType: 'none', padding: 0 }}>
+        <div className="grid-container">
           {posts.map((post) => (
-            <li key={post.id} className="card">
+            <div key={post.id} className="card">
               <p><strong>Title:</strong> {post.title}</p>
               <p><strong>Body:</strong> {post.body}</p>
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
       
     </div>
