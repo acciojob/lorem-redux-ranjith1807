@@ -1,48 +1,46 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from './redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from './redux/actions';
 import './App.css';
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
   
   const loading = useSelector((state) => state.loading);
-  const posts = useSelector((state) => state.posts);
+  const data = useSelector((state) => state.data);
   const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchData());
   }, [dispatch]);
 
   return (
     <div className="container">
-      
-      {/* Test 1 & 3 explicitly require this to be an <h1> */}
-      <h1>A short Naration of Lorem Ipsum</h1>
-      
-      {/* Subtitle */}
-      <p>Below Contains A title and Body gotten from a random API, Please take your time to Review</p>
+      <header className="header">
+        <h1>A short Naration of Lorem Ipsum</h1>
+        <h4>
+          Below Contains A title and Body gotten from<br/>
+          a random API, Please take your time to Review
+        </h4>
+      </header>
 
-      {/* Loading State */}
-      {loading && <p>Loading...</p>}
-      
-      {/* Error State */}
-      {error && <p>Error: {error}</p>}
+      {/* Displays loading state */}
+      {loading && <h4 className="status-message">Loading...</h4>}
+      {error && <h4 className="status-message error">Error: {error}</h4>}
 
-      {/* Posts Grid - Content MUST be in <p> tags per functional requirements */}
-      {!loading && !error && posts.length > 0 && (
-        <div className="grid-container">
-          {posts.map((post) => (
-            <div key={post.id} className="card">
-              <p><strong>Title:</strong> {post.title}</p>
-              <p><strong>Body:</strong> {post.body}</p>
-            </div>
+      {/* Displays posts with the exact CSS classes Cypress wants */}
+      {!loading && !error && data && data.length > 0 && (
+        <ul className="grid">
+          {data.slice(0, 6).map((item, index) => (
+            <li className="card" key={item.id || index}>
+              <h4 className="title"><strong>Title </strong>:{item.title}</h4>
+              <p className="body"><strong>Body </strong>:{item.body}</p>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
-      
     </div>
   );
-};
+}
 
 export default App;
