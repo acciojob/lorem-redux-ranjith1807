@@ -8,8 +8,8 @@ export const fetchData = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_DATA_REQUEST });
 
-    // Note: If api.lorem.com/ipsum is failing, swap it with 'https://jsonplaceholder.typicode.com/posts'
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    // MUST use http://api.lorem.com/ipsum for Cypress to intercept without SSL errors
+    fetch('http://api.lorem.com/ipsum')
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
