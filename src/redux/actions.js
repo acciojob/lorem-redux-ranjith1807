@@ -20,8 +20,8 @@ export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(fetchPostsRequest());
     
-    // MUST use the exact URL from the prompt so Cypress can intercept and test the loading delay
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    // This MUST be https://api.lorem.com/ipsum for Cypress to intercept and test the loading state
+    fetch('https://api.lorem.com/ipsum')
       .then((response) => response.json())
       .then((data) => {
         dispatch(fetchPostsSuccess(data));
