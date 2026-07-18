@@ -16,11 +16,11 @@ export const fetchPostsFailure = (error) => ({
   payload: error,
 });
 
-// Using .then() and .catch() fixes the regeneratorRuntime crash
 export const fetchPosts = () => {
   return (dispatch) => {
     dispatch(fetchPostsRequest());
     
+    // MUST use the exact URL from the prompt so Cypress can intercept and test the loading delay
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then((response) => response.json())
       .then((data) => {
