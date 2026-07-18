@@ -1,33 +1,26 @@
-export const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
-export const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
-export const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
+// Action Types
+export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
-export const fetchPostsRequest = () => ({
-  type: FETCH_POSTS_REQUEST,
-});
-
-export const fetchPostsSuccess = (posts) => ({
-  type: FETCH_POSTS_SUCCESS,
-  payload: posts,
-});
-
-export const fetchPostsFailure = (error) => ({
-  type: FETCH_POSTS_FAILURE,
-  payload: error,
-});
-
-export const fetchPosts = () => {
+// Async Thunk Action
+export const fetchData = () => {
   return (dispatch) => {
-    dispatch(fetchPostsRequest());
-    
-    // This MUST be https://api.lorem.com/ipsum for Cypress to intercept and test the loading state
-    fetch('https://api.lorem.com/ipsum')
-      .then((response) => response.json())
+    dispatch({ type: FETCH_DATA_REQUEST });
+
+    // Note: If api.lorem.com/ipsum is failing, swap it with 'https://jsonplaceholder.typicode.com/posts'
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then((data) => {
-        dispatch(fetchPostsSuccess(data));
+        dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
       })
       .catch((error) => {
-        dispatch(fetchPostsFailure(error.message));
+        dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
       });
   };
 };

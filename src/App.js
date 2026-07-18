@@ -1,49 +1,47 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts } from './redux/actions';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from './redux/actions';
 import './App.css';
 
-const App = () => {
+function App() {
   const dispatch = useDispatch();
   
   const loading = useSelector((state) => state.loading);
-  const posts = useSelector((state) => state.posts);
+  const data = useSelector((state) => state.data);
   const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchData());
   }, [dispatch]);
 
   return (
-    <div className="app-container">
-      <h1>A short Naration of Lorem Ipsum</h1>
-      
-      {/* 1) Updated to use "froma" without a space to match the exact Cypress assertion */}
-      <h4>
-        Below Contains A title and Body gotten froma random API, Please take your time to Review
-      </h4>
+    <div className="container">
+      <header className="header">
+        <h1>A short Naration of Lorem Ipsum</h1>
+        <h4>
+          Below Contains A title and Body gotten from a random API, Please take your time to Review
+        </h4>
+      </header>
 
-      {loading && <p className="status-text">Loading...</p>}
+      {/* Displays loading state */}
+      {loading && <h4 className="status-message">Loading...</h4>}
+      {error && <h4 className="status-message error">Error: {error}</h4>}
 
-      {error && <p className="status-text error">Error: {error}</p>}
-
-      {!loading && !error && (
-        <ul className="post-grid">
-          {posts.map((post, index) => (
-            <li key={index} className="post-card">
-              {/* 2) Added className="title" and className="body" to satisfy Cypress queries */}
-              <p className="title">
-                <strong>Title :</strong>{post.title}
-              </p>
-              <p className="body">
-                <strong>Body :</strong>{post.body}
-              </p>
+      {/* Displays posts with the exact CSS classes Cypress wants */}
+      {!loading && !error && data && data.length > 0 && (
+        <ul className="grid">
+          {data.slice(0, 6).map((item, index) => (
+            <li className="card" key={item.id || index}>
+              {/* <h4 className="title">Title :{item.title}</h4>
+              <p className="body">Body :{item.body}</p> */}
+              <p className="title"><strong>Title :</strong>{item.title}</p>
+              <p className="body"><strong>Body :</strong>{item.body}</p>
             </li>
           ))}
         </ul>
       )}
     </div>
   );
-};
+}
 
 export default App;
