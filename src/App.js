@@ -33,10 +33,10 @@ const App = () => {
             <li key={index} className="post-card">
               {/* 2) Added className="title" and className="body" to satisfy Cypress queries */}
               <p className="title">
-                <strong>Title :</strong> {post.title}
+                <strong>Title :</strong>{post.title}
               </p>
               <p className="body">
-                <strong>Body :</strong> {post.body}
+                <strong>Body :</strong>{post.body}
               </p>
             </li>
           ))}
