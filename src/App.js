@@ -6,7 +6,6 @@ import './App.css';
 const App = () => {
   const dispatch = useDispatch();
   
-  // Selecting properties individually prevents unnecessary rerender warnings
   const loading = useSelector((state) => state.loading);
   const posts = useSelector((state) => state.posts);
   const error = useSelector((state) => state.error);
@@ -18,8 +17,10 @@ const App = () => {
   return (
     <div className="app-container">
       <h1>A short Naration of Lorem Ipsum</h1>
+      
+      {/* 1) Updated to use "froma" without a space to match the exact Cypress assertion */}
       <h4>
-        Below Contains A title and Body gotten from a random API, Please take your time to Review
+        Below Contains A title and Body gotten froma random API, Please take your time to Review
       </h4>
 
       {loading && <p className="status-text">Loading...</p>}
@@ -30,11 +31,12 @@ const App = () => {
         <ul className="post-grid">
           {posts.map((post, index) => (
             <li key={index} className="post-card">
-              <p>
-                <strong>Title :</strong>{post.title}
+              {/* 2) Added className="title" and className="body" to satisfy Cypress queries */}
+              <p className="title">
+                <strong>Title :</strong> {post.title}
               </p>
-              <p>
-                <strong>Body :</strong>{post.body}
+              <p className="body">
+                <strong>Body :</strong> {post.body}
               </p>
             </li>
           ))}
