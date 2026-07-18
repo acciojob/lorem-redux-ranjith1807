@@ -1,59 +1,46 @@
-.container {
-  max-width: 900px;
+.app-container {
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   font-family: serif;
-}
-
-.header {
   text-align: center;
-  margin-bottom: 40px;
 }
 
-.header h1 {
-  font-size: 2rem;
+h1 {
   margin-bottom: 10px;
 }
 
-.subtitle {
-  font-weight: bold;
-  font-size: 1rem;
+h4 {
+  font-weight: normal;
+  font-size: 0.95rem;
+  margin-bottom: 30px;
+  color: #333;
 }
 
-.status-message {
-  text-align: center;
+.status-text {
   font-size: 1.2rem;
-  font-family: sans-serif;
+  margin-top: 40px;
 }
 
-.error {
-  color: red;
-}
-
-
-
-.grid {
+.post-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  list-style-type: none; /* Removes the default bullet points */
-  padding: 0;            /* Removes default list indent */
-  margin: 0;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  list-style: none;
+  padding: 0;
+  text-align: left;
 }
 
-.card {
+.post-card {
   border: 1px solid #ddd;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-  padding: 20px;
-  font-family: serif;
+  padding: 15px;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.card h4 {
-  margin: 0 0 10px 0;
-  font-size: 1rem;
-}
-
-.card p {
-  margin: 0;
+.post-card p {
+  margin: 8px 0;
+  font-size: 0.85rem;
   line-height: 1.4;
 }

@@ -6,6 +6,7 @@ import './App.css';
 const App = () => {
   const dispatch = useDispatch();
   
+  // Selecting properties individually prevents unnecessary rerender warnings
   const loading = useSelector((state) => state.loading);
   const posts = useSelector((state) => state.posts);
   const error = useSelector((state) => state.error);
@@ -14,30 +15,31 @@ const App = () => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  const showLoading = loading || (posts.length === 0 && !error);
-
   return (
-    <div className="container">
-      
+    <div className="app-container">
       <h1>A short Naration of Lorem Ipsum</h1>
-      
-      <p>Below Contains A title and Body gotten from<br/>a random API, Please take your time to Review</p>
+      <h4>
+        Below Contains A title and Body gotten from a random API, Please take your time to Review
+      </h4>
 
-      {showLoading && <div className="loading">Loading...</div>}
-      
-      {error && <div className="error">Error: {error}</div>}
+      {loading && <p className="status-text">Loading...</p>}
 
-      {!showLoading && posts.length > 0 && (
-        <div className="grid-container">
-          {posts.map((post) => (
-            <div key={post.id} className="card">
-              <p><strong>Title :</strong>{post.title}</p>
-              <p><strong>Body :</strong>{post.body}</p>
-            </div>
+      {error && <p className="status-text error">Error: {error}</p>}
+
+      {!loading && !error && (
+        <ul className="post-grid">
+          {posts.map((post, index) => (
+            <li key={index} className="post-card">
+              <p>
+                <strong>Title :</strong>{post.title}
+              </p>
+              <p>
+                <strong>Body :</strong>{post.body}
+              </p>
+            </li>
           ))}
-        </div>
+        </ul>
       )}
-      
     </div>
   );
 };

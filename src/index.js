@@ -1,10 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom'; // Changed from 'react-dom/client'
+import ReactDOM from 'react-dom'; // Use 'react-dom/client' if using React 18+
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import App from './App';
+import './App.css';
 
-// React 17 render method
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
