@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk'; // ✅ Correct default import
+import {thunk} from 'redux-thunk'; // ✅ Correct default import
 
 import loremReducer from './reducer';
 
