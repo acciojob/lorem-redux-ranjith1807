@@ -8,19 +8,21 @@ export const fetchData = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_DATA_REQUEST });
 
-    // MUST use http://api.lorem.com/ipsum for Cypress to intercept without SSL errors
-    fetch('http://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
-      })
-      .catch((error) => {
-        dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
-      });
+    // Add delay to simulate network latency
+    setTimeout(() => {
+      fetch('http://jsonplaceholder.typicode.com/posts')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          dispatch({ type: FETCH_DATA_SUCCESS, payload: data });
+        })
+        .catch((error) => {
+          dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+        });
+    }, 1000); // 1 second delay
   };
 };
