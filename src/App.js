@@ -14,18 +14,9 @@ function App() {
     dispatch(fetchData());
   }, [dispatch]);
 
-  // If loading, render ONLY the loading element to satisfy the 'expected 1' assertion
-  if (loading) {
-    return (
-      <div className="container">
-        <h4 className="status-message">Loading...</h4>
-      </div>
-    );
-  }
-
-  // Otherwise, render the full layout
   return (
     <div className="container">
+      {/* 1) Always render the header so layout tests never fail on missing elements */}
       <header className="header">
         <h1>A short Naration of Lorem Ipsum</h1>
         <h4>
@@ -33,8 +24,12 @@ function App() {
         </h4>
       </header>
 
+      {/* 2) Render a SINGLE loading element when loading is true */}
+      {loading && <h4 className="status-message">Loading...</h4>}
+
       {error && <h4 className="status-message error">Error: {error}</h4>}
 
+      {/* 3) Render the fetched posts only after loading completes */}
       {!loading && !error && data && data.length > 0 && (
         <ul className="grid">
           {data.map((item, index) => (

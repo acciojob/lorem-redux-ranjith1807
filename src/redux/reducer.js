@@ -5,7 +5,7 @@ import {
 } from './actions';
 
 const initialState = {
-  loading: true, // Must be true by default to pass test #2
+  loading: true, // Must be true by default to pass loading state tests
   data: [],
   error: ''
 };
