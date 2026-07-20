@@ -23,6 +23,6 @@ export const fetchData = () => {
         .catch((error) => {
           dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
         });
-    }, 1000); // 1 second delay
+    }, 3000); // 1 second delay
   };
 };
